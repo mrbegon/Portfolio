@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALEB VISUALS | Filmmaker & Cinematographer</title>
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-surface: #121215;
+      --bg-card: #18181c;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #d4af37;
+      --font-serif: 'Cinzel', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body { font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+
+    /* HEADER & NAV */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(9, 9, 11, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.2em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.2s ease;
+    }
+    nav a:hover { color: #fff; }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      background: radial-gradient(circle at center, rgba(30, 30, 36, 0.45) 0%, rgba(9, 9, 11, 1) 85%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      letter-spacing: 0.08em;
+      font-weight: 400;
+      max-width: 900px;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #fff;
+      color: #000;
+      padding: 0.9rem 2rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border: 1px solid #fff;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn:hover { background: transparent; color: #fff; }
+
+    /* GENERAL SECTIONS */
+    section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 3.5rem; }
+    .section-head h2 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    .section-head p { color: var(--text-muted); font-size: 0.88rem; }
+
+    /* FILTERS */
+    .filters {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    /* PROJECTS GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--border-hover); }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.85; transition: opacity 0.3s ease, transform 0.5s ease;
+      display: block;
+    }
+    .card:hover .thumb img { opacity: 1; transform: scale(1.03); }
+
+    .play-badge {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      transition: background 0.3s ease;
+    }
+    .card:hover .play-badge { background: rgba(0, 0, 0, 0.15); }
+
+    .play-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .card-info { padding: 1.5rem; }
+    .card-meta {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+      margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+    .card-info h3 {
+      font-size: 1.15rem; font-weight: 500; margin-bottom: 0.35rem;
+    }
+    .card-info p {
+      font-size: 0.85rem; color: var(--text-muted); line-height: 1.45;
+    }
+
+    /* STILLS GRID */
+    .stills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .still-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .still-card:hover { transform: translateY(-3px); border-color: var(--border-hover); }
+
+    .still-card-img-wrap {
+      width: 100%;
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .still-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.88; transition: opacity 0.35s ease, transform 0.5s ease;
+      display: block;
+    }
+    .still-card:hover img { opacity: 1; transform: scale(1.04); }
+
+    .still-badge {
+      position: absolute; top: 0.75rem; left: 0.75rem;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .still-card-info {
+      padding: 1rem 1.25rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--bg-surface);
+    }
+    .still-card-info h4 {
+      font-size: 0.88rem; font-weight: 500; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin-right: 1rem;
+    }
+    .still-card-info span {
+      font-family: var(--font-mono);
+      font-size: 0.7rem; color: var(--text-muted); flex-shrink: 0;
+    }
+
+    /* ABOUT SECTION */
+    .about-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+    }
+    .about-text h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .software-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .software-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      color: var(--text);
+    }
+
+    /* VIDEO MODAL */
+    .modal {
+      display: none; position: fixed; inset: 0; z-index: 100;
+      background: rgba(0, 0, 0, 0.94); backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      justify-content: center; align-items: center; padding: 2rem;
+    }
+    .modal.open { display: flex; }
+    .modal-content {
+      width: 100%; max-width: 1050px; background: var(--bg-surface);
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem; z-index: 10;
+      background: rgba(0,0,0,0.6); border: 1px solid var(--border);
+      color: #fff; width: 36px; height: 36px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.25); }
+    .player-wrap {
+      width: 100%; aspect-ratio: 16 / 9; background: #000; position: relative;
+    }
+    .player-wrap iframe { width: 100%; height: 100%; border: 0; }
+    .modal-body { padding: 2rem; }
+    .modal-test-bar {
+      margin-top: 1.5rem; padding: 0.85rem; background: var(--bg-card);
+      border: 1px dashed var(--border-hover); border-radius: 4px;
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    .modal-test-bar input {
+      flex: 1; background: transparent; border: 1px solid var(--border);
+      color: #fff; padding: 0.5rem; font-size: 0.8rem; font-family: var(--font-mono);
+      outline: none;
+    }
+    .modal-test-bar button {
+      background: var(--accent); color: #000; border: 0; padding: 0.5rem 1rem;
+      font-size: 0.75rem; font-weight: 600; cursor: pointer; text-transform: uppercase;
+    }
+
+    /* STILLS LIGHTBOX MODAL */
+    .stills-modal {
+      display: none; position: fixed; inset: 0; z-index: 110;
+      background: rgba(0, 0, 0, 0.96); backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      justify-content: center; align-items: center; padding: 2rem;
+    }
+    .stills-modal.open { display: flex; }
+    .stills-modal-container {
+      max-width: 1200px; width: 100%; display: flex; flex-direction: column; position: relative;
+    }
+    .stills-modal-close {
+      align-self: flex-end;
+      background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border);
+      color: #fff; width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem; transition: background 0.2s ease;
+    }
+    .stills-modal-close:hover { background: rgba(255, 255, 255, 0.25); }
+    .stills-frame-wrap {
+      width: 100%; max-height: 75vh; display: flex;
+      justify-content: center; align-items: center;
+      background: #000; border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+    }
+    .stills-frame-wrap img {
+      max-width: 100%; max-height: 75vh; object-fit: contain; display: block;
+    }
+    .stills-modal-meta {
+      padding-top: 1.25rem; display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 1rem;
+    }
+    .stills-modal-meta h3 {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      letter-spacing: 0.05em; margin-bottom: 0.25rem;
+    }
+    .stills-modal-meta p { font-size: 0.85rem; color: var(--text-muted); max-width: 700px; }
+    .stills-nav-btn {
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: #fff; padding: 0.5rem 1rem; font-family: var(--font-mono);
+      font-size: 0.75rem; cursor: pointer; border-radius: 2px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .stills-nav-btn:hover { border-color: var(--border-hover); background: var(--bg-surface); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.5rem; }
+      nav { gap: 1rem; }
+      nav a { font-size: 0.7rem; }
+      .grid, .stills-grid { grid-template-columns: 1fr; }
+      .about-wrap { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 2rem; }
+      .modal, .stills-modal { padding: 1rem; }
+      .stills-modal-meta { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <a href="#" class="brand" id="cfg-brand-name">CALEB VISUALS</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#stills">Stills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tagline" id="cfg-hero-tagline">Filmmaker & Cinematographer</div>
+    <h1 id="cfg-hero-heading">I DON'T JUST SHOOT.<br>I TELL THE STORY.</h1>
+    <p id="cfg-hero-subheading">Commercial campaigns, narrative shorts, and festival edits crafted in Singapore.</p>
+    <button class="btn" onclick="openShowreel()">Watch Showreel</button>
+  </div>
+
+  <!-- SELECTED PROJECTS -->
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected Projects</h2>
+      <p>Click any thumbnail to open the video popup</p>
+    </div>
+    <div class="filters" id="cfg-filter-container"></div>
+    <div class="grid" id="cfg-project-grid"></div>
+  </section>
+
+  <!-- PHOTO STILLS -->
+  <section id="stills">
+    <div class="section-head">
+      <h2>Cinematography Stills</h2>
+      <p>Select frame grabs, lighting studies, and uncompressed compositions</p>
+    </div>
+    <div class="stills-grid" id="cfg-stills-grid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-wrap">
+      <div class="about-text">
+        <h3 id="cfg-about-title">The Story Behind The Lens</h3>
+        <div id="cfg-about-paragraphs"></div>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-serif); margin-bottom: 1rem;">Post-Production & Software</h4>
+        <div class="software-tags" id="cfg-software-tags"></div>
+        <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border);">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 0.5rem;">DIRECT BOOKINGS & INQUIRIES</div>
+          <p style="font-size: 0.9rem; margin-bottom: 1.25rem;">Available for commercial commissions, DP narrative projects, and social adaptations.</p>
+          <a href="#" id="cfg-contact-btn" class="btn" style="padding: 0.65rem 1.25rem; font-size: 0.72rem;">camerastewie@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p id="cfg-footer-copy">© 2026 Caleb's Visuals. All Rights Reserved.</p>
+    <p style="margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem;" id="cfg-footer-insta">Instagram: @camerastewie</p>
+  </footer>
+
+  <!-- VIDEO POPUP MODAL -->
+  <div class="modal" id="video-modal" onclick="onModalBackdropClick(event, 'video-modal', closeModal)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
+      <div class="player-wrap">
+        <iframe id="modal-iframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="modal-body">
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent);" id="modal-meta">ROLE / YEAR</div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin: 0.35rem 0;" id="modal-title">Project Title</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem;" id="modal-synopsis"></p>
+        
+        <div class="modal-test-bar">
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Quick-Test YouTube Link:</span>
+          <input type="text" id="quick-url-input" placeholder="Paste any YouTube URL or Video ID">
+          <button onclick="testQuickVideo()">Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STILLS LIGHTBOX MODAL -->
+  <div class="stills-modal" id="stills-lightbox" onclick="onModalBackdropClick(event, 'stills-lightbox', closeStillsLightbox)">
+    <div class="stills-modal-container" onclick="event.stopPropagation()">
+      <button class="stills-modal-close" onclick="closeStillsLightbox()" aria-label="Close lightbox">✕</button>
+      <div class="stills-frame-wrap">
+        <img id="lightbox-img" src="" alt="Cinematography Frame Grab">
+      </div>
+      <div class="stills-modal-meta">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 0.25rem;" id="lightbox-tag">PROJECT TAG</div>
+          <h3 id="lightbox-title">Still Title</h3>
+          <p id="lightbox-desc">Still description and lighting notes.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="stills-nav-btn" onclick="navigateStill(-1)">Prev</button>
+          <button class="stills-nav-btn" onclick="navigateStill(1)">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    /* =========================================================================================
+       >>> SITE CONFIGURATION: EDIT ALL CONTENT HERE <<<
+       ========================================================================================= */
+    const EDIT_HERE_CONFIG = {
+
+      // --- [A] BRAND, HEADERS & SOCIAL LINKS ---
+      BRAND_NAME: "CALEB VISUALS",
+      HERO_TAGLINE: "Filmmaker | Director | Cinematographer",
+      HERO_HEADING: "I DON'T JUST SHOOT.<br>I TELL THE STORY.",
+      HERO_SUBHEADING: "Commercial campaigns, narrative shorts, and festival edits crafted in Singapore.",
+      EMAIL: "camerastewie@gmail.com",
+      INSTAGRAM_HANDLE: "@camerastewie",
+      INSTAGRAM_URL: "https://www.instagram.com/camerastewie",
+      FOOTER_COPYRIGHT: "© 2026 Caleb's Visuals. All Rights Reserved.",
+
+      // --- [B] MAIN SHOWREEL POPUP (HERO BUTTON) ---
+      MAIN_SHOWREEL: {
+        youtubeUrlOrId: "dQw4w9WgXcQ",
+        title: "Caleb's Official Film Showreel"
+      },
+
+      // --- [C] FILTER CATEGORIES ---
+      CATEGORIES: [
+        { id: "all", label: "All Works" },
+        { id: "narrative", label: "Narrative & Drama" },
+        { id: "commercial", label: "Commercial & Social" },
+        { id: "events", label: "Festivals & Events" },
+        { id: "awards", label: "Award Winners" }
+      ],
+
+      // --- [D] ABOUT SECTION TEXT & SOFTWARE TAGS ---
+      ABOUT_SECTION: {
+        title: "The Story Behind The Lens",
+        bioParagraphs: [
+          "Hey there! My name is Caleb! I script, shoot, and edit!",
+          "My love for filmmaking started on the vibrant, bustling island of Singapore, capturing fleeting moments on my family's Olympus Stylus Verve. What began as candid snapshots quickly evolved into a visual obsession.",
+          "Through compelling visuals, nuanced color grading, and intentional rhythm, I create films that captivate, inspire, and leave a lasting impact across every screen."
+        ],
+        softwareList: [
+          "DaVinci Resolve", "Adobe Premiere Pro", "After Effects",
+          "Cinema 4D", "StudioBinder", "StreamYard"
+        ]
+      },
+
+      // --- [E] VIDEO PROJECTS ---
+      PROJECTS: [
+        {
+          title: "Melt (融化) — Short Film",
+          category: "narrative",
+          year: "2025",
+          role: "Director of Photography",
+          client: "Temasek Poly x SAFRA",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
+          synopsis: "Final year short film narrative drama exploring emotional estrangement and familial reconciliation."
+        },
+        {
+          title: "Carlsberg x Waterbomb Festival",
+          category: "events",
+          year: "2025",
+          role: "Lead Videographer & Editor",
+          client: "Carlsberg Singapore",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+          synopsis: "High-octane aftermovie capturing water-festival energy with kinetic speed ramping and sound design."
+        },
+        {
+          title: "Beyond The Corridor",
+          category: "narrative",
+          year: "2024",
+          role: "Writer & Director",
+          client: "Ministry of Home Affairs x Viddsee",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80",
+          synopsis: "Commissioned short film produced under the SGSecure youth film program highlighting community vigilance."
+        },
+        {
+          title: "Dewy Choo x CeraVe Campaign Ad",
+          category: "commercial",
+          year: "2024",
+          role: "Cinematographer & Colorist",
+          client: "CeraVe Singapore",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+          synopsis: "Clean aesthetic skincare commercial focusing on natural skin textures, balanced soft light, and pacing."
+        },
+        {
+          title: "The Making of Watashi 私",
+          category: "narrative",
+          year: "2024",
+          role: "Director & Cinematographer",
+          client: "Sustainable Design Award",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+          synopsis: "Documentary charting the conceptual design and sustainable textile fabrication of the collection."
+        },
+        {
+          title: "A Nation Worth Serving (1st Place)",
+          category: "awards",
+          year: "2024",
+          role: "Director & Editor",
+          client: "SAFRA Video Competition",
+          youtubeUrlOrId: "dQw4w9WgXcQ",
+          thumbnailImage: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+          synopsis: "Award-winning short celebrating national service, brotherhood, and collective defense."
+        }
+      ],
+
+      // --- [F] PHOTO STILLS GALLERY ---
+      STILLS_GALLERY: [
+        {
+          title: "Melt (融化) — 35mm Low-Key Interior",
+          aspectRatio: "2.39:1",
+          projectTag: "Narrative Short",
+          imageUrl: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1400&q=80",
+          caption: "Natural motivated window light pushed through diffusers for an intimate bedside sequence."
+        },
+        {
+          title: "Waterbomb Festival — Kinetic Stage Lighting",
+          aspectRatio: "16:9",
+          projectTag: "Carlsberg Event",
+          imageUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1400&q=80",
+          caption: "High-contrast dynamic neon and water spray capture at 120fps."
+        },
+        {
+          title: "Beyond The Corridor — Nocturnal Exterior",
+          aspectRatio: "2.39:1",
+          projectTag: "MHA x Viddsee",
+          imageUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1400&q=80",
+          caption: "HDB corridor ambient sodium-vapor practicals balanced with cool fill."
+        },
+        {
+          title: "CeraVe Commercial — Clean Macro Glow",
+          aspectRatio: "1:1",
+          projectTag: "Dewy Choo Campaign",
+          imageUrl: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80",
+          caption: "Soft wrapped key light emphasizing skin texture and product purity."
+        },
+        {
+          title: "Watashi 私 — Minimalist Studio Portrait",
+          aspectRatio: "4:5",
+          projectTag: "Sustainable Design",
+          imageUrl: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1400&q=80",
+          caption: "Monochromatic composition balancing organic textile geometry."
+        },
+        {
+          title: "A Nation Worth Serving — Dawn Field Exercise",
+          aspectRatio: "2.39:1",
+          projectTag: "SAFRA Competition",
+          imageUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1400&q=80",
+          caption: "Silhouette backlight through atmospheric dawn mist."
+        }
+      ]
+    };
+
+    /* =========================================================================================
+       >>> SCRIPT ENGINE: AUDITED & PROOF-CHECKED FUNCTIONS <<<
+       ========================================================================================= */
+
+    let activeFilter = "all";
+    let currentStillIndex = 0;
+
+    // Robust YouTube Video ID Parser
+    function parseYouTubeVideoId(input) {
+      if (!input) return "dQw4w9WgXcQ";
+      const cleanInput = input.trim();
+      const match = cleanInput.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+      return match ? match[1] : cleanInput;
+    }
+
+    // Initialize all components
+    function initPortfolio() {
+      // 1. Text & Profile Elements
+      document.getElementById('cfg-brand-name').textContent = EDIT_HERE_CONFIG.BRAND_NAME;
+      document.getElementById('cfg-hero-tagline').textContent = EDIT_HERE_CONFIG.HERO_TAGLINE;
+      document.getElementById('cfg-hero-heading').innerHTML = EDIT_HERE_CONFIG.HERO_HEADING;
+      document.getElementById('cfg-hero-subheading').textContent = EDIT_HERE_CONFIG.HERO_SUBHEADING;
+      document.getElementById('cfg-footer-copy').textContent = EDIT_HERE_CONFIG.FOOTER_COPYRIGHT;
+      document.getElementById('cfg-footer-insta').textContent = `Instagram: ${EDIT_HERE_CONFIG.INSTAGRAM_HANDLE}`;
+      
+      const contactBtn = document.getElementById('cfg-contact-btn');
+      contactBtn.textContent = EDIT_HERE_CONFIG.EMAIL;
+      contactBtn.href = `mailto:${EDIT_HERE_CONFIG.EMAIL}`;
+
+      // 2. About & Software
+      document.getElementById('cfg-about-title').textContent = EDIT_HERE_CONFIG.ABOUT_SECTION.title;
+      document.getElementById('cfg-about-paragraphs').innerHTML = 
+        EDIT_HERE_CONFIG.ABOUT_SECTION.bioParagraphs.map(p => `<p>${p}</p>`).join('');
+      document.getElementById('cfg-software-tags').innerHTML = 
+        EDIT_HERE_CONFIG.ABOUT_SECTION.softwareList.map(s => `<span class="software-tag">${s}</span>`).join('');
+
+      // 3. Category Filter Buttons
+      const filterBox = document.getElementById('cfg-filter-container');
+      filterBox.innerHTML = EDIT_HERE_CONFIG.CATEGORIES.map(cat => `
+        <button class="filter-btn ${cat.id === activeFilter ? 'active' : ''}" onclick="applyFilter('${cat.id}')">
+          ${cat.label}
+        </button>
+      `).join('');
+
+      // 4. Render Grid Views
+      renderProjectCards();
+      renderStillsGallery();
+    }
+
+    // Filter project items
+    function applyFilter(categoryKey) {
+      activeFilter = categoryKey;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const catObj = EDIT_HERE_CONFIG.CATEGORIES.find(c => c.id === categoryKey);
+        if (catObj) {
+          btn.classList.toggle('active', btn.textContent.trim() === catObj.label);
+        }
+      });
+      renderProjectCards();
+    }
+
+    // Render video project cards
+    function renderProjectCards() {
+      const grid = document.getElementById('cfg-project-grid');
+      const filtered = activeFilter === 'all' 
+        ? EDIT_HERE_CONFIG.PROJECTS 
+        : EDIT_HERE_CONFIG.PROJECTS.filter(item => item.category === activeFilter);
+
+      grid.innerHTML = filtered.map(proj => {
+        const absoluteIndex = EDIT_HERE_CONFIG.PROJECTS.indexOf(proj);
+        return `
+          <div class="card" onclick="openProjectByIndex(${absoluteIndex})">
+            <div class="thumb">
+              <img src="${proj.thumbnailImage}" alt="${proj.title}" loading="lazy">
+              <div class="play-badge">
+                <div class="play-icon">▶</div>
+              </div>
+            </div>
+            <div class="card-info">
+              <div class="card-meta">
+                <span>${proj.role}</span>
+                <span>${proj.year}</span>
+              </div>
+              <h3>${proj.title}</h3>
+              <p>${proj.synopsis}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Open video modal
+    function openProjectByIndex(index) {
+      const p = EDIT_HERE_CONFIG.PROJECTS[index];
+      if (!p) return;
+      loadVideoModal(p.youtubeUrlOrId, `${p.role} · ${p.year} · ${p.client}`, p.title, p.synopsis);
+    }
+
+    function openShowreel() {
+      loadVideoModal(
+        EDIT_HERE_CONFIG.MAIN_SHOWREEL.youtubeUrlOrId, 
+        "OFFICIAL REEL", 
+        EDIT_HERE_CONFIG.MAIN_SHOWREEL.title, 
+        "Selected cinematography and post-production highlight reel."
+      );
+    }
+
+    function loadVideoModal(videoLink, meta, title, synopsis) {
+      const vidId = parseYouTubeVideoId(videoLink);
+      document.getElementById('modal-iframe').src = `https://www.youtube.com/embed/${vidId}?autoplay=1&rel=0`;
+      document.getElementById('modal-meta').textContent = meta;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-synopsis').textContent = synopsis;
+      document.getElementById('quick-url-input').value = vidId;
+      document.getElementById('video-modal').classList.add('open');
+    }
+
+    function testQuickVideo() {
+      const val = document.getElementById('quick-url-input').value;
+      if (val) {
+        const id = parseYouTubeVideoId(val);
+        document.getElementById('modal-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('video-modal');
+      modal.classList.remove('open');
+      document.getElementById('modal-iframe').src = ""; // Instantly halts audio/video playback
+    }
+
+    // Render Stills Gallery
+    function renderStillsGallery() {
+      const grid = document.getElementById('cfg-stills-grid');
+      if (!grid || !EDIT_HERE_CONFIG.STILLS_GALLERY) return;
+
+      grid.innerHTML = EDIT_HERE_CONFIG.STILLS_GALLERY.map((still, idx) => `
+        <div class="still-card" onclick="openStillLightbox(${idx})">
+          <div class="still-card-img-wrap">
+            <img src="${still.imageUrl}" alt="${still.title}" loading="lazy">
+            <div class="still-badge">${still.aspectRatio || '2.39:1'}</div>
+          </div>
+          <div class="still-card-info">
+            <h4>${still.title}</h4>
+            <span>${still.projectTag || 'Film Still'}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openStillLightbox(index) {
+      currentStillIndex = index;
+      updateLightboxContent();
+      document.getElementById('stills-lightbox').classList.add('open');
+    }
+
+    function updateLightboxContent() {
+      const still = EDIT_HERE_CONFIG.STILLS_GALLERY[currentStillIndex];
+      if (!still) return;
+
+      document.getElementById('lightbox-img').src = still.imageUrl;
+      document.getElementById('lightbox-title').textContent = still.title;
+      document.getElementById('lightbox-tag').textContent = `${still.projectTag || 'Still'} · ${still.aspectRatio || '2.39:1'}`;
+      document.getElementById('lightbox-desc').textContent = still.caption || '';
+    }
+
+    function navigateStill(direction) {
+      const total = EDIT_HERE_CONFIG.STILLS_GALLERY.length;
+      if (total === 0) return;
+      currentStillIndex = (currentStillIndex + direction + total) % total;
+      updateLightboxContent();
+    }
+
+    function closeStillsLightbox() {
+      document.getElementById('stills-lightbox').classList.remove('open');
+      document.getElementById('lightbox-img').src = '';
+    }
+
+    // Backdrop Click Helper
+    function onModalBackdropClick(event, modalId, closeCallback) {
+      if (event.target.id === modalId) {
+        closeCallback();
+      }
+    }
+
+    // Global Keyboard Listeners
+    window.addEventListener('keydown', (e) => {
+      const videoModal = document.getElementById('video-modal');
+      const stillsModal = document.getElementById('stills-lightbox');
+
+      if (e.key === 'Escape') {
+        if (videoModal && videoModal.classList.contains('open')) closeModal();
+        if (stillsModal && stillsModal.classList.contains('open')) closeStillsLightbox();
+      }
+
+      if (stillsModal && stillsModal.classList.contains('open')) {
+        if (e.key === 'ArrowRight') navigateStill(1);
+        if (e.key === 'ArrowLeft') navigateStill(-1);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', initPortfolio);
+  </script>
+</body>
+</html>
